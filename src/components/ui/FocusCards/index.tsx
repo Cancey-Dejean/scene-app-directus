@@ -4,12 +4,10 @@ import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 
 import Link from "next/link";
-import { movieDateFormat } from "@/constants";
-import { format } from "date-fns";
+// import { movieDateFormat } from "@/constants";
+// import { format } from "date-fns";
 import { Button } from "@/components/ui/Button";
-import { Media, Movie } from "@/payload-types";
-import { slugify } from "@/utils/slugify";
-import { getModifiedBannerUrl } from "@/utils/modifiedS3Images";
+import { Movie } from "@/types";
 
 export const Card = React.memo(
   ({
@@ -23,7 +21,6 @@ export const Card = React.memo(
     hovered: number | null;
     setHovered: React.Dispatch<React.SetStateAction<number | null>>;
   }) => {
-    const modifiedBannerUrl = getModifiedBannerUrl(card.banner as Media);
     return (
       <div
         onMouseEnter={() => setHovered(index)}
@@ -34,11 +31,8 @@ export const Card = React.memo(
         )}
       >
         <Image
-          src={
-            modifiedBannerUrl ||
-            "https://dummyimage.com/515x240.png/22c55e/ffffff"
-          }
-          alt={(card.banner as Media)?.alt || ""}
+          src={"https://dummyimage.com/515x240.png/22c55e/ffffff"}
+          alt={""}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           fill
           className="absolute inset-0 object-cover transition-all duration-300 ease-out group-hover:scale-110"
@@ -52,15 +46,15 @@ export const Card = React.memo(
             <div>
               <h2 className={cn("text-white")}>{card.title}</h2>
 
-              <p className="text-sm">
+              {/* <p className="text-sm">
                 {card.releaseDate &&
                   `(${format(card.releaseDate, movieDateFormat)})`}
-              </p>
+              </p> */}
             </div>
 
             <Button asChild variant="secondary">
               <Link
-                href={`/movies/${slugify(card.title)}`}
+                href={`/movies/#`}
                 className={cn(
                   "after:absolute after:inset-0",
                   hovered === index ? "opacity-100" : "opacity-0",

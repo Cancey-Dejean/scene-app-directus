@@ -15,8 +15,6 @@ export default async function RecentlyAdded({
 }) {
   const movies = await getMovies();
 
-  console.log(movies);
-
   return (
     <div>
       <div className="flex flex-col gap-2">
