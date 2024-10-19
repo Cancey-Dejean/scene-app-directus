@@ -13,7 +13,7 @@ export default function MovieCard({ movie }: { movie: Movie }) {
           {typeof banner === "object" && (
             <Image
               src={
-                `${process.env.DIRECTUS_API_ENDPOINT}/assets/${banner.id}` ||
+                `${process.env.DIRECTUS_API_ENDPOINT}/assets/${banner.filename_disk}` ||
                 "https://dummyimage.com/560x400.png/22c55e/ffffff"
               }
               alt={banner.title}

@@ -9,10 +9,11 @@ export async function getMovies() {
         // "banner.*",
         "banner.id",
         "banner.title",
+        "banner.filename_disk",
         "slug",
         "synopsis",
         "release_date",
-        "genre",
+
         "trailer_url",
         "favorite_scenes",
       ],

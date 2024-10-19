@@ -25,12 +25,12 @@ import Link from "next/link";
 const data = {
   navMain: [
     {
-      title: "Getting Started",
+      title: "Library",
       url: "#",
       items: [
         {
-          title: "Installation",
-          url: "#",
+          title: "Movies",
+          url: "/movies",
           isActive: false,
         },
         {

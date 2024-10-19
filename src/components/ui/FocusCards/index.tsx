@@ -21,6 +21,13 @@ export const Card = React.memo(
     hovered: number | null;
     setHovered: React.Dispatch<React.SetStateAction<number | null>>;
   }) => {
+    const { title, slug, banner } = card;
+    const imageUrl =
+      banner && typeof banner === "object" && banner.filename_disk
+        ? `${process.env.DIRECTUS_API_ENDPOINT}/assets/${banner.filename_disk}`
+        : "https://dummyimage.com/560x400.png/22c55e/ffffff";
+
+    console.log(imageUrl);
     return (
       <div
         onMouseEnter={() => setHovered(index)}
@@ -31,8 +38,8 @@ export const Card = React.memo(
         )}
       >
         <Image
-          src={"https://dummyimage.com/515x240.png/22c55e/ffffff"}
-          alt={""}
+          src={imageUrl}
+          alt={banner.title}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           fill
           className="absolute inset-0 object-cover transition-all duration-300 ease-out group-hover:scale-110"
@@ -44,7 +51,7 @@ export const Card = React.memo(
         >
           <div className="flex grow items-center justify-between gap-4 bg-gradient-to-b from-neutral-50 to-neutral-200 bg-clip-text text-xl font-medium text-transparent md:text-2xl">
             <div>
-              <h2 className={cn("text-white")}>{card.title}</h2>
+              <h2 className={cn("text-white")}>{title}</h2>
 
               {/* <p className="text-sm">
                 {card.releaseDate &&
@@ -54,7 +61,7 @@ export const Card = React.memo(
 
             <Button asChild variant="secondary">
               <Link
-                href={`/movies/#`}
+                href={`/movies/${slug}`}
                 className={cn(
                   "after:absolute after:inset-0",
                   hovered === index ? "opacity-100" : "opacity-0",
@@ -73,20 +80,20 @@ export const Card = React.memo(
 Card.displayName = "Card";
 
 export function FocusCards({
-  cards,
+  movies,
   className,
 }: {
-  cards: Movie[];
+  movies: Movie[];
   className?: string;
 }) {
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
     <div className={cn("grid gap-10", className)}>
-      {cards.map((card, index) => (
+      {movies.map((movie, index) => (
         <Card
-          key={card.title}
-          card={card}
+          key={movie.id}
+          card={movie}
           index={index}
           hovered={hovered}
           setHovered={setHovered}
