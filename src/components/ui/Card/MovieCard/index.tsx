@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Card, CardContent } from "../../card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Movie } from "@/types";
 
 export default function MovieCard({ movie }: { movie: Movie }) {
-  const { title, banner } = movie;
+  const { title, banner, slug } = movie;
 
   return (
     <Card className="rounded-3xl">
@@ -25,7 +25,7 @@ export default function MovieCard({ movie }: { movie: Movie }) {
           )}
 
           <Link
-            href={`#`}
+            href={`/movies/${slug}`}
             className="absolute inset-0 flex w-full flex-col justify-end bg-gradient-to-t from-transparent px-5 py-8 text-center after:absolute after:inset-0 after:rounded-2xl after:bg-gradient-to-b after:from-transparent after:to-black/80"
           >
             <h3 className="relative z-10 mt-2 text-3xl font-semibold text-white">

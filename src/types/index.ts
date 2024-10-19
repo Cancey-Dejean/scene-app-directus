@@ -4,6 +4,7 @@ export type Movie = {
   description: string;
   banner: { id: string; title: string; filename_disk: string };
   slug: string;
+  category: [];
   release_date: string;
   trailer_url: string;
   favorite_scenes: string[];

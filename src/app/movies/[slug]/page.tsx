@@ -15,6 +15,7 @@ import { movieDateFormat } from "@/constants";
 import { notFound } from "next/navigation";
 import { getMovies } from "@/lib/schemas/movies";
 import { Metadata } from "next";
+import { Badge } from "@/components/ui/badge";
 
 export async function generateMetadata({
   params,
@@ -62,8 +63,9 @@ export default async function MovieDetails({
   if (!movie) {
     return notFound();
   }
-  const { title, release_date, banner, synopsis } = movie;
-  console.log(movie);
+  console.log(movies);
+  const { title, release_date, banner, synopsis, category } = movie;
+
   return (
     <>
       <section>
@@ -86,6 +88,7 @@ export default async function MovieDetails({
             </h1>
 
             {synopsis && <p className="max-w-[30rem] text-2xl">{synopsis}</p>}
+            {category && <Badge>{category.title}</Badge>}
           </div>
         </div>
       </section>

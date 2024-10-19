@@ -5,7 +5,6 @@ export default async function AllMovies() {
   const movies = await getMovies();
 
   console.log(movies);
-
   return (
     <div className="space-y-8 overflow-hidden">
       <SpotlightPreview />

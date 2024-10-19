@@ -54,8 +54,8 @@ export const Card = React.memo(
               <h2 className={cn("text-white")}>{title}</h2>
 
               {/* <p className="text-sm">
-                {card.releaseDate &&
-                  `(${format(card.releaseDate, movieDateFormat)})`}
+                {card.release_date &&
+                  `(${format(card.release_date, movieDateFormat)})`}
               </p> */}
             </div>
 
