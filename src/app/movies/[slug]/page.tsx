@@ -63,7 +63,7 @@ export default async function MovieDetails({
   if (!movie) {
     return notFound();
   }
-  console.log(movies);
+  console.log(movies[0].genres);
   const { title, release_date, banner, synopsis, category } = movie;
 
   return (
