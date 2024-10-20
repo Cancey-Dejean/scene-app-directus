@@ -21,7 +21,16 @@ export const Card = React.memo(
     hovered: number | null;
     setHovered: React.Dispatch<React.SetStateAction<number | null>>;
   }) => {
-    const { title, slug, banner } = card;
+    // const { title, slug, banner } = card;
+    const {
+      title,
+      // release_date,
+      banner,
+      // synopsis,
+      // category,
+      // favorite_scenes,
+      slug,
+    } = card;
     const imageUrl =
       banner && typeof banner === "object" && banner.filename_disk
         ? `${process.env.DIRECTUS_API_ENDPOINT}/assets/${banner.filename_disk}`
@@ -38,7 +47,7 @@ export const Card = React.memo(
         )}
       >
         <Image
-          src={imageUrl}
+          src={`${process.env.DIRECTUS_API_ENDPOINT}/assets/${banner.id}`}
           alt={banner.title}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           fill

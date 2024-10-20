@@ -5,17 +5,12 @@ export async function getMovies() {
   return directus.request(
     readItems("movies", {
       fields: [
-        // "*",
-        "slug",
-        "title",
-        "banner.id",
-        "banner.title",
-        "banner.filename_disk",
-        "synopsis",
-        "release_date",
-        "favorite_scenes",
-        "trailer_url",
+        "*",
+        "banner.*",
+        "poster.*",
+        "favorite_scenes.*",
         "genres.*.title",
+        "genres.*.slug",
       ],
     }),
   );

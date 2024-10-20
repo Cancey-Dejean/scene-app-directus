@@ -1,5 +1,5 @@
 import * as React from "react";
-import { GalleryVerticalEnd, Minus, Plus } from "lucide-react";
+import { GalleryVerticalEnd, HomeIcon, Minus, Plus } from "lucide-react";
 
 import {
   Collapsible,
@@ -34,19 +34,13 @@ const data = {
           isActive: false,
         },
         {
-          title: "Project Structure",
-          url: "#",
+          title: "Favorites",
+          url: "/favorites",
           isActive: false,
         },
-      ],
-    },
-    {
-      title: "Community",
-      url: "#",
-      items: [
         {
-          title: "Contribution Guide",
-          url: "#",
+          title: "Memory Lane",
+          url: "/memory-lane",
           isActive: false,
         },
       ],
@@ -79,6 +73,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <SidebarGroup>
           <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <Link href="/">
+                  <HomeIcon className="size-4" />
+                  <span>Home</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
             {data.navMain.map((item, index) => (
               <Collapsible
                 key={item.title}
@@ -88,7 +90,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 <SidebarMenuItem>
                   <CollapsibleTrigger asChild>
                     <SidebarMenuButton>
-                      {item.title}{" "}
+                      <span className="flex items-center gap-2">
+                        <GalleryVerticalEnd className="size-4" />
+                        {item.title}
+                      </span>
+
                       <Plus className="ml-auto group-data-[state=open]/collapsible:hidden" />
                       <Minus className="ml-auto group-data-[state=closed]/collapsible:hidden" />
                     </SidebarMenuButton>
@@ -112,6 +118,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 </SidebarMenuItem>
               </Collapsible>
             ))}
+
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <Link href="/genres">
+                  <HomeIcon className="size-4" />
+                  <span>Genres</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
