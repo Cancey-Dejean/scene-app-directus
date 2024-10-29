@@ -21,7 +21,6 @@ export const Card = React.memo(
     hovered: number | null;
     setHovered: React.Dispatch<React.SetStateAction<number | null>>;
   }) => {
-    // const { title, slug, banner } = card;
     const {
       title,
       // release_date,
