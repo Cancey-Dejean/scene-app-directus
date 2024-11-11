@@ -1,29 +1,10 @@
-import Image from "next/image";
-import { cn } from "@/lib/utils";
-import { format } from "date-fns";
-import { movieDateFormat } from "@/constants";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/Button";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getMovies } from "@/lib/schemas/movies";
 import { Metadata } from "next";
-import { Badge } from "@/components/ui/badge";
-import { FavoriteScene, Genre } from "@/types";
-import { Hero } from "@/components/ui/Hero";
 
-export async function generateMetadata(
-  props: {
-    params: Promise<{ slug: string }>;
-  }
-): Promise<Metadata> {
+export async function generateMetadata(props: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
   const params = await props.params;
   const movies = await getMovies();
 
@@ -53,11 +34,9 @@ export async function generateStaticParams() {
   return movies.map(({ slug }) => ({ slug }));
 }
 
-export default async function MovieDetails(
-  props: {
-    params: Promise<{ slug: string }>;
-  }
-) {
+export default async function MovieDetails(props: {
+  params: Promise<{ slug: string }>;
+}) {
   const params = await props.params;
   const movies = await getMovies();
 
@@ -68,21 +47,21 @@ export default async function MovieDetails(
     return notFound();
   }
 
-  const {
-    title,
-    release_date,
-    banner,
-    trailer_url,
-    synopsis,
-    genres,
-    favorite_scenes,
-  } = movie;
+  // const {
+  //   title,
+  //   release_date,
+  //   banner,
+  //   trailer_url,
+  //   synopsis,
+  //   genres,
+  //   favorite_scenes,
+  // } = movie;
 
   // console.log(genres[0].categories_id.slug);
   return (
     <>
-      <Hero movie={movie} />
-      <section>
+      {/* <Hero movie={movie} /> */}
+      {/* <section>
         <div className="relative h-[34rem] overflow-hidden rounded-3xl">
           <Image
             src={
@@ -221,7 +200,7 @@ export default async function MovieDetails(
             )}
           </div>
         </section>
-      )}
+      )} */}
     </>
   );
 }
