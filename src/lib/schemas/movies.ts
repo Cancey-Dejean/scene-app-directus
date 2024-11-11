@@ -10,6 +10,7 @@ export async function getMovies() {
         "movieId",
         "favorite_scenes.*",
       ],
+      sort: ["title"],
     }),
   );
 }
