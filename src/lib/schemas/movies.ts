@@ -1,5 +1,5 @@
 import { directus } from "@/lib/directus";
-import { readItems } from "@directus/sdk";
+import { readItem, readItems } from "@directus/sdk";
 
 export async function getMovies() {
   return directus.request(
@@ -12,4 +12,8 @@ export async function getMovies() {
       ],
     }),
   );
+}
+
+export async function getMovieById(movieId: string) {
+  return directus.request(readItem("movies", movieId));
 }

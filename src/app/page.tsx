@@ -1,18 +1,19 @@
 import { fetchTopRatedMovies, fetchTrendingMovies } from "@/actions/tmdb";
 import Container from "@/components/ui/container";
-import { HomeHero } from "@/components/ui/HomeHero";
-import HomeHeroSkeleton from "@/components/ui/HomeHero/HomeHeroSkeleton";
+import { HomeHero } from "@/components/ui/Heroes/HomeHero";
+import HomeHeroSkeleton from "@/components/ui/Heroes/HomeHero/HomeHeroSkeleton";
 import { MovieRow } from "@/components/ui/Movies/MovieRow";
 import { TopFiveFeatured } from "@/components/ui/TopFiveFeatured";
 import { getMovies } from "@/lib/schemas/movies";
 import { Suspense } from "react";
 
 export default async function Home() {
-  const [trendingMovies, topRatedMovies] = await Promise.all([
+  const [trendingMovies, topRatedMovies, movies] = await Promise.all([
     fetchTrendingMovies(),
     fetchTopRatedMovies(),
+    getMovies(),
   ]);
-  const movies = await getMovies();
+
   const randomIndex = Math.floor(Math.random() * topRatedMovies.results.length);
   const topRatedMovie = topRatedMovies.results[randomIndex];
 
