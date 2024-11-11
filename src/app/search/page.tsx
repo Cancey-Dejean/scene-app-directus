@@ -1,14 +1,11 @@
 import { Suspense } from "react";
 import Form from "next/form";
 import Container from "@/components/ui/container";
-// import { allMoviesQuery } from "@/sanity/lib/queries";
-// import { sanityFetch } from "@/sanity/lib/live";
-// import { fetchMoviesByIds } from "@/actions/tmdb";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/Button";
 import { Search } from "lucide-react";
 import { FocusCards } from "@/components/ui/focus-cards";
-import { getMovieById, getMovies } from "@/lib/schemas/movies";
+import { getMovies } from "@/lib/schemas/movies";
 import { fetchMoviesByIds } from "@/actions/tmdb";
 
 interface PageProps {
@@ -17,9 +14,6 @@ interface PageProps {
 
 export default async function SearchPage({ searchParams }: PageProps) {
   const { query } = await searchParams;
-
-  // const { data: movies } = await sanityFetch({ query: allMoviesQuery });
-
   const movies = await getMovies();
 
   // Filter movies based on search query
