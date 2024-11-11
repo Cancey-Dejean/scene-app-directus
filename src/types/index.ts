@@ -92,7 +92,7 @@ export type MovieDetail = Movie & {
 
 export type TMDBResponse = {
   page: number;
-  results: SearchResult[];
+  results: Movie[];
   total_pages: number;
   total_results: number;
   // results: Movie[];
