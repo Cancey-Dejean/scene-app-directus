@@ -5,6 +5,7 @@ export async function getMovies() {
   return directus.request(
     readItems("movies", {
       fields: [
+        // "*",
         "title",
         "movieId",
         {
