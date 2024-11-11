@@ -16,7 +16,7 @@ export default async function Home() {
   const randomIndex = Math.floor(Math.random() * topRatedMovies.results.length);
   const topRatedMovie = topRatedMovies.results[randomIndex];
 
-  console.log(topRatedMovie);
+  console.log(movies);
   return (
     <>
       <Suspense fallback={<HomeHeroSkeleton />}>

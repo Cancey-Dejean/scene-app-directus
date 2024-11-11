@@ -2,7 +2,7 @@
 
 import { Movie } from "@/types";
 import Image from "next/image";
-import { BackgroundGradient } from "../../background-gradient";
+import { BackgroundGradient } from "@/components/ui/background-gradient";
 import Container from "@/components/ui/container";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
