@@ -1,16 +1,14 @@
 import { directus } from "@/lib/directus";
-import { readItems } from "@directus/sdk";
+import { readItem, readItems } from "@directus/sdk";
 
 export async function getMovies() {
   return directus.request(
     readItems("movies", {
       fields: [
-        "*",
-        "banner.*",
-        "poster.*",
+        // "*",
+        "title",
+        "movieId",
         "favorite_scenes.*",
-        "genres.*.title",
-        "genres.*.slug",
       ],
     }),
   );
