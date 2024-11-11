@@ -30,7 +30,6 @@ export default function FavoriteScenes({ movie }: { movie: Movie }) {
                 >
                   <div className="relative h-[217px] w-full overflow-hidden rounded-2xl">
                     <Image
-                      // src={scene.image}
                       src={`${process.env.NEXT_PUBLIC_ASSETS_URL}${scene.scene_img?.filename_disk}`}
                       alt={scene.title}
                       fill

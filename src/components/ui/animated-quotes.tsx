@@ -1,17 +1,11 @@
 "use client";
 
+import { Quote } from "@/types";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 
-type Quote = {
-  text: string;
-  characterName: string;
-  imgUrl: string;
-  designation: string;
-  src: string;
-};
 export const AnimatedQuotes = ({
   quotes,
   autoplay = false,
@@ -80,12 +74,12 @@ export const AnimatedQuotes = ({
                   className="absolute inset-0 origin-bottom"
                 >
                   <Image
-                    src={quote.imgUrl}
+                    src={`${process.env.NEXT_PUBLIC_ASSETS_URL}${quote.imgUrl?.filename_disk}`}
                     alt={quote.characterName}
                     width={500}
                     height={500}
                     draggable={false}
-                    className="h-full w-full rounded-3xl object-cover object-center"
+                    className="h-full w-full rounded-3xl border object-cover object-center"
                   />
                 </motion.div>
               ))}

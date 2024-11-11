@@ -15,6 +15,9 @@ export async function getMovies() {
             "scene_img.filename_disk",
           ],
         },
+        {
+          quotes: ["*", "text", "characterName", "imgUrl.filename_disk"],
+        },
       ],
       sort: ["title"],
     }),

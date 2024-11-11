@@ -34,6 +34,12 @@ export type ImageProps = {
   width?: number;
 };
 
+export type Quote = {
+  text: string;
+  characterName: string;
+  imgUrl: ImageProps;
+};
+
 export type Movie = {
   id: number;
   title?: string;
@@ -74,11 +80,7 @@ export type Movie = {
       poster_path: string | null;
     }>;
   };
-  quotes?: Array<{
-    text: string;
-    characterName: string;
-    imgUrl: string;
-  }>;
+  quotes?: Quote[];
   scenes?: Array<{
     title: string;
     scene_starts: string;
