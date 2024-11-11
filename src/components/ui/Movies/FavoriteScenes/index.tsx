@@ -30,7 +30,8 @@ export default function FavoriteScenes({ movie }: { movie: Movie }) {
                 >
                   <div className="relative h-[217px] w-full overflow-hidden rounded-2xl">
                     <Image
-                      src={scene.imgUrl}
+                      // src={scene.image}
+                      src={`${process.env.NEXT_PUBLIC_ASSETS_URL}${scene.scene_img?.filename_disk}`}
                       alt={scene.title}
                       fill
                       className="object-cover"
@@ -38,8 +39,8 @@ export default function FavoriteScenes({ movie }: { movie: Movie }) {
                   </div>
                   <h2 className="text-2xl font-bold">{scene.title}</h2>
                   <div className="flex items-center gap-4">
-                    <p>Starts: {scene.sceneStarts}</p>
-                    <p>Ends: {scene.sceneEnds}</p>
+                    <p>Starts: {scene.scene_starts}</p>
+                    <p>Ends: {scene.scene_ends}</p>
                   </div>
                 </BackgroundGradient>
               </li>

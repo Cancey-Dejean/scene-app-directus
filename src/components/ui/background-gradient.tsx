@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import React from "react";
 import { motion } from "framer-motion";
@@ -39,10 +41,10 @@ export const BackgroundGradient = ({
         style={{
           backgroundSize: animate ? "400% 400%" : undefined,
         }}
-        // @ts-expect-error framer-motion types
+        // @ts-expect-error Motion Type
         className={cn(
           "absolute inset-0 z-[1] rounded-3xl opacity-60 blur-xl transition duration-500 will-change-transform group-hover:opacity-100",
-          "bg-[radial-gradient(circle_farthest-side_at_0_100%,#00ccb1,transparent),radial-gradient(circle_farthest-side_at_100%_0,#7b61ff,transparent),radial-gradient(circle_farthest-side_at_100%_100%,#ffc414,transparent),radial-gradient(circle_farthest-side_at_0_0,#1ca0fb,#141316)]",
+          "bg-[radial-gradient(circle_farthest-side_at_0_100%,#0E9F6E,transparent),radial-gradient(circle_farthest-side_at_100%_0,#057A55,transparent),radial-gradient(circle_farthest-side_at_100%_100%,#046C4E,transparent),radial-gradient(circle_farthest-side_at_0_0,#03543F,#014737)]",
         )}
       />
       <motion.div
@@ -61,10 +63,10 @@ export const BackgroundGradient = ({
         style={{
           backgroundSize: animate ? "400% 400%" : undefined,
         }}
-        // @ts-expect-error framer-motion types
+        // @ts-expect-error Motion Type
         className={cn(
           "absolute inset-0 z-[1] rounded-3xl will-change-transform",
-          "bg-[radial-gradient(circle_farthest-side_at_0_100%,#00ccb1,transparent),radial-gradient(circle_farthest-side_at_100%_0,#7b61ff,transparent),radial-gradient(circle_farthest-side_at_100%_100%,#ffc414,transparent),radial-gradient(circle_farthest-side_at_0_0,#1ca0fb,#141316)]",
+          "bg-[radial-gradient(circle_farthest-side_at_0_100%,#22c55e,transparent),radial-gradient(circle_farthest-side_at_100%_0,#22c55e,transparent),radial-gradient(circle_farthest-side_at_100%_100%,#ffc414,transparent),radial-gradient(circle_farthest-side_at_0_0,#22c55e,#22c55e)]",
         )}
       />
 

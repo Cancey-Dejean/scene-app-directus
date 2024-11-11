@@ -27,6 +27,13 @@
 //   favorite_scenes: FavoriteScene[];
 // };
 
+export type ImageProps = {
+  filename_disk?: string;
+  title?: string;
+  height?: number;
+  width?: number;
+};
+
 export type Movie = {
   id: number;
   title?: string;
@@ -74,9 +81,9 @@ export type Movie = {
   }>;
   scenes?: Array<{
     title: string;
-    sceneStarts: string;
-    sceneEnds: string;
-    imgUrl: string;
+    scene_starts: string;
+    scene_ends: string;
+    scene_img?: ImageProps;
   }>;
 };
 

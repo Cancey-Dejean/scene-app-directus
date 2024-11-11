@@ -5,10 +5,16 @@ export async function getMovies() {
   return directus.request(
     readItems("movies", {
       fields: [
-        // "*",
         "title",
         "movieId",
-        "favorite_scenes.*",
+        {
+          scenes: [
+            "title",
+            "scene_starts",
+            "scene_ends",
+            "scene_img.filename_disk",
+          ],
+        },
       ],
       sort: ["title"],
     }),
