@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import Providers from "@/components/providers";
-import { inter } from "@/utils/fonts";
+import { geistMono, geistSans } from "@/utils/fonts";
 
 import {
   Breadcrumb,
@@ -19,6 +19,8 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/ui/AppSidebar";
+import Header from "@/components/ui/Header";
+import Footer from "@/components/ui/Footer";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -32,8 +34,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable}`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         <Providers>
+          <div className="grid min-h-[100dvh] grid-rows-[1fr_auto]">
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </div>
+        </Providers>
+        {/* <Providers>
           <SidebarProvider>
             <AppSidebar />
             <SidebarInset>
@@ -57,7 +68,7 @@ export default function RootLayout({
               <div className="flex flex-1 flex-col gap-4 p-4">{children}</div>
             </SidebarInset>
           </SidebarProvider>
-        </Providers>
+        </Providers> */}
       </body>
     </html>
   );

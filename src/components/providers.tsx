@@ -24,7 +24,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     >
       {children}
       <ToasterProvider />
-      <div className="fixed bottom-5 right-5">
+      <div className="fixed bottom-6 right-6">
         <ThemeToggle />
       </div>
     </ThemeProvider>

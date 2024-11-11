@@ -4,7 +4,7 @@ import { getMovies } from "@/lib/schemas/movies";
 import Image from "next/image";
 import { format } from "date-fns";
 import { movieDateFormat } from "@/constants";
-import Container from "@/components/container";
+import Container from "@/components/ui/container";
 export default async function AllMovies() {
   const movies = await getMovies();
 
