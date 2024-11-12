@@ -20,9 +20,9 @@ export default function FavoriteScenes({ movie }: { movie: Movie }) {
       <Container>
         <h2 className="mb-8 text-4xl font-bold">Favorite Scenes</h2>
 
-        <ul className="grid grid-cols-1 gap-16 text-white sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-          {scenes && scenes?.length > 0 ? (
-            scenes.slice(0, loadMore).map((scene, index) => (
+        {scenes && scenes?.length > 0 ? (
+          <ul className="grid grid-cols-1 gap-16 text-white sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+            {scenes.slice(0, loadMore).map((scene, index) => (
               <li key={index}>
                 <BackgroundGradient
                   key={scene.title}
@@ -43,13 +43,13 @@ export default function FavoriteScenes({ movie }: { movie: Movie }) {
                   </div>
                 </BackgroundGradient>
               </li>
-            ))
-          ) : (
-            <h2 className="p-4 text-red-500">No scenes created</h2>
-          )}
-        </ul>
+            ))}
+          </ul>
+        ) : (
+          <h2 className="text-red-500">Scenes coming soon.</h2>
+        )}
 
-        {scenes && scenes?.length && (
+        {scenes && scenes?.length > 0 && (
           <div className="mt-8 flex flex-col items-center text-center">
             {loadMore < scenes?.length && (
               <Button onClick={showMoreScenes}>Load More Scenes</Button>

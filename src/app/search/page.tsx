@@ -72,7 +72,6 @@ export default async function SearchPage({ searchParams }: PageProps) {
 
         <Suspense fallback={<div className="h-96 animate-pulse bg-gray-900" />}>
           <div className="mt-8 grid grid-cols-1 gap-6 text-white sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {/* @ts-expect-error TODO: fix this */}
             <FocusCards cards={searchResults} />
           </div>
         </Suspense>

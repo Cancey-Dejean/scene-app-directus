@@ -75,7 +75,7 @@ export const AnimatedQuotes = ({
                 >
                   <Image
                     src={`${process.env.NEXT_PUBLIC_ASSETS_URL}${quote.imgUrl?.filename_disk}`}
-                    alt={quote.characterName}
+                    alt={quote.characterName || ""}
                     width={500}
                     height={500}
                     draggable={false}
@@ -111,7 +111,7 @@ export const AnimatedQuotes = ({
               className="text-4xl italic text-black dark:text-white"
             >
               &quot;
-              {quotes[active].text.split(" ").map((word, index) => (
+              {quotes[active].text?.split(" ").map((word, index) => (
                 <motion.span
                   key={index}
                   initial={{

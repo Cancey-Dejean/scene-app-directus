@@ -39,7 +39,7 @@ export const GlareCard = ({
     "--radius": "48px",
     "--easing": "ease",
     "--transition": "var(--duration) var(--easing)",
-  } as const;
+  } as React.CSSProperties;
 
   const backgroundStyle = {
     "--step": "5%",
@@ -68,8 +68,7 @@ export const GlareCard = ({
   };
   return (
     <div
-      // @ts-expect-error TODO: fix this
-      style={containerStyle}
+      style={{ ...containerStyle }}
       className="duration-[var(--duration)] ease-[var(--easing)] delay-[var(--delay)] group relative isolate w-full transition-transform will-change-transform [aspect-ratio:17/21] [contain:layout_style] [perspective:600px]"
       ref={refElement}
       onPointerMove={(event) => {

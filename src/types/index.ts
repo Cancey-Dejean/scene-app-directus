@@ -35,9 +35,20 @@ export type ImageProps = {
 };
 
 export type Quote = {
-  text: string;
-  characterName: string;
-  imgUrl: ImageProps;
+  text?: string;
+  characterName?: string;
+  imgUrl?: ImageProps;
+};
+
+export type FavoriteMovie = {
+  movies_id: {
+    movieId: string;
+  };
+};
+
+export type UserFavorites = {
+  name: string;
+  top5: FavoriteMovie[];
 };
 
 export type Movie = {
@@ -50,36 +61,47 @@ export type Movie = {
   overview: string;
   poster_path: string;
   media_type?: string;
-  credits?: {
+  vote_count: number;
+  belongs_to_collection: {
+    backdrop_path: string;
+    id: number;
+    name: string;
+    poster_path: string;
+  };
+  credits: {
     cast: Array<{
-      id: number;
       name: string;
+      profile_path: string;
+      original_name: string;
       character: string;
-      profile_path: string | null;
-    }>;
-    crew: Array<{
-      id: number;
-      name: string;
-      job: string;
     }>;
   };
-  videos?: {
+  videos: {
     results: Array<{
-      id: string;
-      key: string;
-      name: string;
-      site: string;
       type: string;
+      name: string;
+      key: string;
+      published_at: string;
+      site: string;
     }>;
   };
   similar?: {
     results: Array<{
       id: number;
-      title?: string;
-      name?: string;
-      poster_path: string | null;
+      poster_path: string;
+      backdrop_path: string;
+      title: string;
+      name: string;
+      original_title: string;
+      vote_average: number;
+      vote_count: number;
     }>;
   };
+  production_companies: Array<{
+    logo_path: string;
+    name: string;
+    origin_country: string;
+  }>;
   quotes?: Quote[];
   scenes?: Array<{
     title: string;
@@ -95,11 +117,12 @@ export type MovieDetail = Movie & {
   first_air_date?: string;
   vote_average: number;
   runtime?: number;
-  number_of_seasons?: number;
+  revenue: number;
   tagline?: string;
+  popularity: number;
 };
 
-export type TMDBResponse = {
+export type TMDBResponse = Movie & {
   page: number;
   results: Movie[];
   total_pages: number;

@@ -2,12 +2,11 @@ import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Clock, Star, Calendar, Film } from "lucide-react";
 import { imageBaseUrl } from "@/constants";
-import Container from "../container";
+import Container from "@/components/ui/container";
 
-interface MovieDetailProps {
+type MovieDetailProps = {
   details: {
     backdrop_path: string;
-
     belongs_to_collection: {
       backdrop_path: string;
       id: number;
@@ -28,46 +27,11 @@ interface MovieDetailProps {
     vote_average: number;
     vote_count: number;
     number_of_seasons?: number;
-    videos: {
-      results: Array<{
-        type: string;
-        name: string;
-        key: string;
-        published_at: string;
-        site: string;
-      }>;
-    };
-    production_companies: Array<{
-      logo_path: string;
-      name: string;
-      origin_country: string;
-    }>;
     release_date?: string;
-    revenue: number;
     runtime?: number;
     tagline?: string;
-    credits: {
-      cast: Array<{
-        name: string;
-        profile_path: string;
-        original_name: string;
-        character: string;
-      }>;
-    };
-    similar: {
-      results: Array<{
-        id: number;
-        poster_path: string;
-        backdrop_path: string;
-        title: string;
-        name: string;
-        original_title: string;
-        vote_average: number;
-        vote_count: number;
-      }>;
-    };
   };
-}
+};
 
 export function MovieDetail({ details }: MovieDetailProps) {
   const title = details.title || details.name || "";

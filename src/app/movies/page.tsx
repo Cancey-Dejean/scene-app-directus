@@ -1,22 +1,3 @@
-// import { fetchById } from "@/actions/tmdb";
-// import { getMovieById } from "@/lib/schemas/movies";
-
-// type Props = {
-//   params: Promise<{ movieId: string }>;
-// };
-
-// export default async function MoviesPage({ params }: Props) {
-//   const { movieId } = await params;
-
-//   const [movieDetails, movie] = await Promise.all([
-//     fetchById(movieId, "movie"),
-//     getMovieById(movieId),
-//   ]);
-
-//   console.log(movie);
-//   return <div>page</div>;
-// }
-
 import { fetchMoviesByIds } from "@/actions/tmdb";
 import Container from "@/components/ui/container";
 import { FocusCards } from "@/components/ui/focus-cards";
@@ -36,7 +17,6 @@ export default async function MoviesPage() {
   return (
     <>
       <Suspense fallback={<div>Loading...</div>}>
-        {/* @ts-expect-error TODO: fix this soon */}
         <HeroBanner movie={allMovies} />
       </Suspense>
 
@@ -44,7 +24,6 @@ export default async function MoviesPage() {
         <section className="bg-black py-40">
           <Container className="">
             <div className="grid grid-cols-1 gap-6 text-white sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-              {/* @ts-expect-error TODO: fix this */}
               <FocusCards cards={allMovies} />
             </div>
 

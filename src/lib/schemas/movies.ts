@@ -35,3 +35,31 @@ export async function getMovies() {
 export async function getMovieById(movieId: string) {
   return directus.request(readItem("movies", movieId));
 }
+
+export async function getFavorites() {
+  return directus.request(
+    readItems("favorites", {
+      fields: [
+        "*",
+        {
+          top5: [
+            "*",
+            {
+              movies_id: ["movieId"],
+            },
+          ],
+        },
+
+        // {
+        //   quotes: [
+        //     "*",
+        //     "text",
+        //     "characterName",
+        //     "imgUrl.*",
+        //     "imgUrl.filename_disk",
+        //   ],
+        // },
+      ],
+    }),
+  );
+}

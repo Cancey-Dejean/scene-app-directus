@@ -8,9 +8,10 @@ import { Suspense } from "react";
 type Props = {
   params: Promise<{ movieId: string }>;
 };
+
 export default async function MovieDetailsPage(props: Props) {
   const { movieId } = await props.params;
-  // const movieDetails = await fetchMoviesByIds([movieId]);
+  // const { movieId } = props.params;
 
   const [tmdbMovieDetails, cmsMovies] = await Promise.all([
     fetchMoviesByIds([movieId]),
@@ -20,20 +21,26 @@ export default async function MovieDetailsPage(props: Props) {
   const tmdbMovie = tmdbMovieDetails[0];
   const movie = cmsMovies.find((movie) => movie.movieId === movieId);
 
-  console.log(movie?.quotes?.[0]);
+  // console.log(movieId);
 
   return (
     <>
-      {/* @ts-expect-error TODO: fix this */}
-      <MovieDetail details={tmdbMovie} />
-
-      {/* @ts-expect-error TODO: fix this */}
-      <FavoriteScenes movie={movie} />
+      <Suspense fallback={<div>Loading...</div>}>
+        {/* @ts-expect-error TODO: fix this */}
+        <MovieDetail details={tmdbMovie} />
+      </Suspense>
 
       <Suspense fallback={<div>Loading...</div>}>
         {/* @ts-expect-error TODO: fix this */}
-        <FavoriteQuotes movie={movie} />
+        <FavoriteScenes movie={movie} />
       </Suspense>
+
+      {movie?.quotes?.length > 0 && (
+        <Suspense fallback={<div>Loading...</div>}>
+          {/* @ts-expect-error TODO: fix this */}
+          <FavoriteQuotes movie={movie} />
+        </Suspense>
+      )}
     </>
   );
 }
