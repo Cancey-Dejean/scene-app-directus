@@ -1,10 +1,5 @@
-import { TopFiveFeatured } from "@/components/ui/TopFiveFeatured";
-import React from "react";
+import { redirect } from "next/navigation";
 
 export default function Favorites() {
-  return (
-    <div>
-      <TopFiveFeatured />
-    </div>
-  );
+  redirect("/");
 }

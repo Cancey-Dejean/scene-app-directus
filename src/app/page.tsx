@@ -36,7 +36,7 @@ export default async function Home() {
         </section>
       </Suspense>
 
-      <TopFiveFeatured />
+      <TopFiveFeatured className="py-28" />
     </>
   );
 }
