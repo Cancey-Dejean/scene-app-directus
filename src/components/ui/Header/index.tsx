@@ -53,7 +53,7 @@ export default function Header() {
 
         <Link
           href="/"
-          className="font-monoton absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-1 text-2xl font-bold text-green-500"
+          className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-1 font-monoton text-2xl font-bold text-green-500"
         >
           Scene
           <span className="text-white">it</span>
@@ -66,7 +66,7 @@ export default function Header() {
             </Link>
           </Button>
           <Button asChild>
-            <Link href="/browse">Browse</Link>
+            <Link href="/browse">Finder</Link>
           </Button>
         </div>
       </Container>
