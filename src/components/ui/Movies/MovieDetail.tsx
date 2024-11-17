@@ -49,7 +49,6 @@ export function MovieDetail({ details, movie }: MovieDetailProps) {
   const duration =
     details.runtime &&
     `${Math.floor(details.runtime / 60)}h ${details.runtime % 60}m`;
-
   // console.log(movie.has_seen_movie);
 
   return (
