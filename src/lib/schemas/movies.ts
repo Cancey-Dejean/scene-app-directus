@@ -6,8 +6,11 @@ export async function getMovies() {
     readItems("movies", {
       fields: [
         // "*",
+        "date_created",
         "title",
         "movieId",
+        "banner_alt.filename_disk",
+        "has_seen_movie",
         {
           scenes: [
             "title",
@@ -27,7 +30,7 @@ export async function getMovies() {
           ],
         },
       ],
-      sort: ["title"],
+      sort: ["-date_created"],
     }),
   );
 }
@@ -44,6 +47,7 @@ export async function getFavorites() {
         {
           top5: [
             "*",
+
             {
               movies_id: ["movieId"],
             },

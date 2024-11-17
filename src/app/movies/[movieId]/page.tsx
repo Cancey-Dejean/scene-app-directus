@@ -21,13 +21,13 @@ export default async function MovieDetailsPage(props: Props) {
   const tmdbMovie = tmdbMovieDetails[0];
   const movie = cmsMovies.find((movie) => movie.movieId === movieId);
 
-  // console.log(movieId);
+  // console.log(movie);
 
   return (
     <>
       <Suspense fallback={<div>Loading...</div>}>
         {/* @ts-expect-error TODO: fix this */}
-        <MovieDetail details={tmdbMovie} />
+        <MovieDetail movie={movie} details={tmdbMovie} />
       </Suspense>
 
       <Suspense fallback={<div>Loading...</div>}>

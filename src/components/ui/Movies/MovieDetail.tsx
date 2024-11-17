@@ -3,8 +3,10 @@ import { Badge } from "@/components/ui/badge";
 import { Clock, Star, Calendar, Film } from "lucide-react";
 import { imageBaseUrl } from "@/constants";
 import Container from "@/components/ui/container";
+import { Movie } from "@/types";
 
 type MovieDetailProps = {
+  movie: Movie;
   details: {
     backdrop_path: string;
     belongs_to_collection: {
@@ -33,7 +35,7 @@ type MovieDetailProps = {
   };
 };
 
-export function MovieDetail({ details }: MovieDetailProps) {
+export function MovieDetail({ details, movie }: MovieDetailProps) {
   const title = details.title || details.name || "";
   const releaseDate = details.release_date || details.first_air_date;
   const formattedDate = releaseDate
@@ -48,19 +50,33 @@ export function MovieDetail({ details }: MovieDetailProps) {
     details.runtime &&
     `${Math.floor(details.runtime / 60)}h ${details.runtime % 60}m`;
 
+  // console.log(movie.has_seen_movie);
+
   return (
     <section className="relative h-[600px] w-full">
       <div className="absolute inset-0 z-[2] bg-gradient-to-t from-black via-black/40" />
 
       <div className="absolute inset-0 z-[1]">
-        <Image
-          src={`${imageBaseUrl}${details.backdrop_path}`}
-          alt={title}
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
+        {movie.banner_alt ? (
+          <Image
+            src={`${process.env.NEXT_PUBLIC_ASSETS_URL}${movie.banner_alt?.filename_disk}`}
+            alt={title}
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+        ) : (
+          <Image
+            src={`${imageBaseUrl}${details.backdrop_path}`}
+            alt={title}
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+        )}
+
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
       </div>
 
@@ -101,6 +117,26 @@ export function MovieDetail({ details }: MovieDetailProps) {
 
         <div className="mt-4 max-w-4xl">
           <p className="text-lg text-gray-300">{details.overview}</p>
+        </div>
+
+        <div>
+          {movie.has_seen_movie && (
+            <div className="text-white">
+              <h3 className="mb-4 mt-6 text-lg font-bold text-green-500">
+                Seen by:
+              </h3>
+              <div className="flex gap-4">
+                {movie.has_seen_movie.map((person: string) => (
+                  <p
+                    className="flex size-10 items-center justify-center rounded-full border"
+                    key={person}
+                  >
+                    {person.charAt(0).toUpperCase()}
+                  </p>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </Container>
     </section>

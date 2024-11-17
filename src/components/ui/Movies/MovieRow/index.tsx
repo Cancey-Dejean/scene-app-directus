@@ -46,7 +46,7 @@ export function MovieRow({ movies, title }: MovieRowProps) {
 
   return (
     <div className="relative">
-      <h2 className="mb-4 text-2xl font-bold">{title}</h2>
+      <h2 className="mb-4 text-2xl font-bold text-white">{title}</h2>
       <button
         className={`absolute left-0 top-1/2 z-10 -translate-y-1/2 p-2 ${
           prevBtnDisabled ? "hidden" : "bg-black/50 hover:bg-black/75"

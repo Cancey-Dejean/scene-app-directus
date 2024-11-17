@@ -55,8 +55,11 @@ export type Movie = {
   id: number;
   title?: string;
   name?: string;
+  banner_alt: ImageProps;
+  has_seen_movie?: string[];
   original_title?: string;
   homepage?: string | null;
+  release_date?: string;
   backdrop_path: string;
   overview: string;
   poster_path: string;

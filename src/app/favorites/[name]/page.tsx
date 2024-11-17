@@ -25,9 +25,9 @@ export default async function Page(props: Props) {
   }
 
   const top5Movies = await fetchMoviesByIds(
-    userFavorites.top5.map(
-      (favorite: FavoriteMovie) => favorite.movies_id.movieId,
-    ),
+    userFavorites.top5
+      .slice(0, 5)
+      .map((favorite: FavoriteMovie) => favorite.movies_id.movieId),
   );
 
   // console.log(favorites[0].top5[0].movies_id.movieId);
@@ -35,7 +35,7 @@ export default async function Page(props: Props) {
   return (
     <>
       {/* Hero Favorite */}
-      <section className="relative h-[700px] w-full">
+      <section className="3xl:h-[700px] relative h-[600px] w-full">
         <div className="absolute inset-0 z-[2] bg-gradient-to-t from-black via-black/40" />
 
         <div className="absolute inset-0 z-[1]">
