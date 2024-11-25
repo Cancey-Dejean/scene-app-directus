@@ -85,7 +85,7 @@ export default function SearchResults({ results }: SearchResultsProps) {
                         <span className="font-medium">Copied!</span>
                         <span className="text-sm text-muted-foreground">
                           ID for{" "}
-                          <strong className="text-white">
+                          <strong className="text-black dark:text-white">
                             {result.title || result.name}
                           </strong>{" "}
                           has been copied to your clipboard

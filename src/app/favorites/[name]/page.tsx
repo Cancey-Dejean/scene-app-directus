@@ -1,6 +1,7 @@
 import { fetchMoviesByIds } from "@/actions/tmdb";
 import Container from "@/components/ui/container";
 import { FocusCards } from "@/components/ui/focus-cards";
+import FavoriteRow from "@/components/ui/Movies/FavoriteRow";
 import { imageBaseUrl } from "@/constants";
 import { getFavorites } from "@/lib/schemas/movies";
 import { FavoriteMovie } from "@/types";
@@ -24,18 +25,70 @@ export default async function Page(props: Props) {
     throw new Error("Favorites not found for this user");
   }
 
-  const top5Movies = await fetchMoviesByIds(
-    userFavorites.top5
-      .slice(0, 5)
-      .map((favorite: FavoriteMovie) => favorite.movies_id.movieId),
-  );
+  const [
+    top5Movies,
+    topComedies,
+    topActions,
+    topDramas,
+    topDocumentaries,
+    topMartialArts,
+    topChristmas,
+    topHorrors,
+    topThrillers,
+  ] = await Promise.all([
+    fetchMoviesByIds(
+      userFavorites.top5
+        .slice(0, 5)
+        .map((favorite: FavoriteMovie) => favorite.movies_id.movieId),
+    ),
+    fetchMoviesByIds(
+      userFavorites.topComedy
+        .slice(0, 10)
+        .map((favorite: FavoriteMovie) => favorite.movies_id.movieId),
+    ),
+    fetchMoviesByIds(
+      userFavorites.topAction
+        .slice(0, 10)
+        .map((favorite: FavoriteMovie) => favorite.movies_id.movieId),
+    ),
+    fetchMoviesByIds(
+      userFavorites.topDrama
+        .slice(0, 10)
+        .map((favorite: FavoriteMovie) => favorite.movies_id.movieId),
+    ),
+    fetchMoviesByIds(
+      userFavorites.topDocumentary
+        .slice(0, 10)
+        .map((favorite: FavoriteMovie) => favorite.movies_id.movieId),
+    ),
+    fetchMoviesByIds(
+      userFavorites.topMartialArts
+        .slice(0, 10)
+        .map((favorite: FavoriteMovie) => favorite.movies_id.movieId),
+    ),
+    fetchMoviesByIds(
+      userFavorites.topChristmas
+        .slice(0, 10)
+        .map((favorite: FavoriteMovie) => favorite.movies_id.movieId),
+    ),
+    fetchMoviesByIds(
+      userFavorites.topHorror
+        .slice(0, 10)
+        .map((favorite: FavoriteMovie) => favorite.movies_id.movieId),
+    ),
+    fetchMoviesByIds(
+      userFavorites.topThriller
+        .slice(0, 10)
+        .map((favorite: FavoriteMovie) => favorite.movies_id.movieId),
+    ),
+  ]);
 
-  // console.log(favorites[0].top5[0].movies_id.movieId);
+  // console.log(topHorrors);
 
   return (
     <>
       {/* Hero Favorite */}
-      <section className="3xl:h-[700px] relative h-[600px] w-full">
+      <section className="relative h-[600px] w-full 3xl:h-[700px]">
         <div className="absolute inset-0 z-[2] bg-gradient-to-t from-black via-black/40" />
 
         <div className="absolute inset-0 z-[1]">
@@ -66,7 +119,19 @@ export default async function Page(props: Props) {
           <FocusCards cards={top5Movies} />
         </Container>
       </section>
-      {/* <HeroFavorites movie={top5Movies[0]} /> */}
+
+      <section className="mt-10">
+        <Container className="flex flex-col gap-4">
+          <FavoriteRow title="Comedy" movies={topComedies} />
+          <FavoriteRow title="Action" movies={topActions} />
+          <FavoriteRow title="Drama" movies={topDramas} />
+          <FavoriteRow title="Documentary" movies={topDocumentaries} />
+          <FavoriteRow title="Martial Arts" movies={topMartialArts} />
+          <FavoriteRow title="Christmas" movies={topChristmas} />
+          <FavoriteRow title="Horror" movies={topHorrors} />
+          <FavoriteRow title="Thriller" movies={topThrillers} />
+        </Container>
+      </section>
     </>
   );
 }

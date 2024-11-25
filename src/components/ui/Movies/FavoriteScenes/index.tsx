@@ -18,7 +18,7 @@ export default function FavoriteScenes({ movie }: { movie: Movie }) {
   return (
     <section className="py-20">
       <Container>
-        <h2 className="mb-8 text-4xl font-bold">Favorite Scenes</h2>
+        <h2 className="mb-8 text-4xl font-bold text-white">Favorite Scenes</h2>
 
         {scenes && scenes?.length > 0 ? (
           <ul className="grid grid-cols-1 gap-16 text-white sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">

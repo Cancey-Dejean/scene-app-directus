@@ -47,7 +47,70 @@ export async function getFavorites() {
         {
           top5: [
             "*",
-
+            {
+              movies_id: ["movieId"],
+            },
+          ],
+        },
+        {
+          topComedy: [
+            "*",
+            {
+              movies_id: ["movieId"],
+            },
+          ],
+        },
+        {
+          topAction: [
+            "*",
+            {
+              movies_id: ["movieId"],
+            },
+          ],
+        },
+        {
+          topDrama: [
+            "*",
+            {
+              movies_id: ["movieId"],
+            },
+          ],
+        },
+        {
+          topDocumentary: [
+            "*",
+            {
+              movies_id: ["movieId"],
+            },
+          ],
+        },
+        {
+          topMartialArts: [
+            "*",
+            {
+              movies_id: ["movieId"],
+            },
+          ],
+        },
+        {
+          topChristmas: [
+            "*",
+            {
+              movies_id: ["movieId"],
+            },
+          ],
+        },
+        {
+          topHorror: [
+            "*",
+            {
+              movies_id: ["movieId"],
+            },
+          ],
+        },
+        {
+          topThriller: [
+            "*",
             {
               movies_id: ["movieId"],
             },

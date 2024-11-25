@@ -54,7 +54,7 @@ export function MovieRow({ movies, title }: MovieRowProps) {
         onClick={scrollPrev}
         disabled={prevBtnDisabled}
       >
-        <ChevronLeft className="h-6 w-6" />
+        <ChevronLeft className="size-6 text-white" />
       </button>
 
       <div className="embla overflow-hidden" ref={emblaRef}>
@@ -80,7 +80,7 @@ export function MovieRow({ movies, title }: MovieRowProps) {
         onClick={scrollNext}
         disabled={nextBtnDisabled}
       >
-        <ChevronRight className="h-6 w-6" />
+        <ChevronRight className="size-6 text-white" />
       </button>
     </div>
   );
