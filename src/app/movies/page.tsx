@@ -18,11 +18,11 @@ export default async function MoviesPage() {
   // console.log(allMovies);
   return (
     <>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense>
         <HeroBanner movie={allMovies} />
       </Suspense>
 
-      <Suspense fallback={<div className="h-96 animate-pulse bg-gray-900" />}>
+      <Suspense>
         <section className="bg-black py-40">
           <Container>
             <MovieList movies={allMovies} />

@@ -1,7 +1,6 @@
 import { fetchTopRatedMovies, fetchTrendingMovies } from "@/actions/tmdb";
 import Container from "@/components/ui/container";
 import { HomeHero } from "@/components/ui/Heroes/HomeHero";
-import HomeHeroSkeleton from "@/components/ui/Heroes/HomeHero/HomeHeroSkeleton";
 import { MovieRow } from "@/components/ui/Movies/MovieRow";
 import { TopFiveFeatured } from "@/components/ui/TopFiveFeatured";
 import { getMovies } from "@/lib/schemas/movies";
@@ -24,11 +23,11 @@ export default async function Home() {
   // console.log(movies);
   return (
     <>
-      <Suspense fallback={<HomeHeroSkeleton />}>
+      <Suspense>
         <HomeHero movie={topRatedMovie} />
       </Suspense>
 
-      <Suspense fallback={<div className="h-36" />}>
+      <Suspense>
         <section className="relative z-10 mt-[-130px]">
           <Container>
             <MovieRow movies={trendingMovies.results} title="Trending Now" />

@@ -35,6 +35,7 @@ export default async function Page(props: Props) {
     topChristmas,
     topHorrors,
     topThrillers,
+    topHood,
   ] = await Promise.all([
     fetchMoviesByIds(
       userFavorites.top5
@@ -78,6 +79,11 @@ export default async function Page(props: Props) {
     ),
     fetchMoviesByIds(
       userFavorites.topThriller
+        .slice(0, 10)
+        .map((favorite: FavoriteMovie) => favorite.movies_id.movieId),
+    ),
+    fetchMoviesByIds(
+      userFavorites.topHood
         .slice(0, 10)
         .map((favorite: FavoriteMovie) => favorite.movies_id.movieId),
     ),
@@ -130,6 +136,7 @@ export default async function Page(props: Props) {
           <FavoriteRow title="Christmas" movies={topChristmas} />
           <FavoriteRow title="Horror" movies={topHorrors} />
           <FavoriteRow title="Thriller" movies={topThrillers} />
+          <FavoriteRow title="Hood Classics" movies={topHood} />
         </Container>
       </section>
     </>

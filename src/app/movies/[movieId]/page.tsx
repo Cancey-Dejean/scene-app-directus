@@ -25,18 +25,18 @@ export default async function MovieDetailsPage(props: Props) {
 
   return (
     <>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense>
         {/* @ts-expect-error TODO: fix this */}
         <MovieDetail movie={movie} details={tmdbMovie} />
       </Suspense>
 
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense>
         {/* @ts-expect-error TODO: fix this */}
         <FavoriteScenes movie={movie} />
       </Suspense>
 
       {movie?.quotes?.length > 0 && (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense>
           {/* @ts-expect-error TODO: fix this */}
           <FavoriteQuotes movie={movie} />
         </Suspense>

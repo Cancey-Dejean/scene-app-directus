@@ -1,4 +1,9 @@
+import { Spinner } from "@/components/ui/icons";
+
 export default function Loading() {
-  // You can add any UI inside Loading, including a Skeleton.
-  return <p>Loading Search...</p>;
+  return (
+    <div className="flex h-screen w-full items-center justify-center">
+      <Spinner />
+    </div>
+  );
 }

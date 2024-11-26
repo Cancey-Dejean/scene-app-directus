@@ -70,7 +70,7 @@ export default async function SearchPage({ searchParams }: PageProps) {
 
         {!query && <p className="mt-8 text-lg text-gray-400">Add Banner</p>}
 
-        <Suspense fallback={<div className="h-96 animate-pulse bg-gray-900" />}>
+        <Suspense>
           <div className="mt-8 grid grid-cols-1 gap-6 text-white sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             <FocusCards cards={searchResults} />
           </div>
