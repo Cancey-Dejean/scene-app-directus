@@ -44,47 +44,47 @@ export default async function Page(props: Props) {
     ),
     fetchMoviesByIds(
       userFavorites.topComedy
-        .slice(0, 10)
+        .slice(0, 5)
         .map((favorite: FavoriteMovie) => favorite.movies_id.movieId),
     ),
     fetchMoviesByIds(
       userFavorites.topAction
-        .slice(0, 10)
+        .slice(0, 5)
         .map((favorite: FavoriteMovie) => favorite.movies_id.movieId),
     ),
     fetchMoviesByIds(
       userFavorites.topDrama
-        .slice(0, 10)
+        .slice(0, 5)
         .map((favorite: FavoriteMovie) => favorite.movies_id.movieId),
     ),
     fetchMoviesByIds(
       userFavorites.topDocumentary
-        .slice(0, 10)
+        .slice(0, 5)
         .map((favorite: FavoriteMovie) => favorite.movies_id.movieId),
     ),
     fetchMoviesByIds(
       userFavorites.topMartialArts
-        .slice(0, 10)
+        .slice(0, 5)
         .map((favorite: FavoriteMovie) => favorite.movies_id.movieId),
     ),
     fetchMoviesByIds(
       userFavorites.topChristmas
-        .slice(0, 10)
+        .slice(0, 5)
         .map((favorite: FavoriteMovie) => favorite.movies_id.movieId),
     ),
     fetchMoviesByIds(
       userFavorites.topHorror
-        .slice(0, 10)
+        .slice(0, 5)
         .map((favorite: FavoriteMovie) => favorite.movies_id.movieId),
     ),
     fetchMoviesByIds(
       userFavorites.topThriller
-        .slice(0, 10)
+        .slice(0, 5)
         .map((favorite: FavoriteMovie) => favorite.movies_id.movieId),
     ),
     fetchMoviesByIds(
       userFavorites.topHood
-        .slice(0, 10)
+        .slice(0, 5)
         .map((favorite: FavoriteMovie) => favorite.movies_id.movieId),
     ),
   ]);
