@@ -30,7 +30,7 @@ export const Card = React.memo(
         src={`${imageBaseUrl}${card.poster_path}`}
         alt={card.title || ""}
         fill
-        className="absolute inset-0 border object-cover"
+        className="absolute inset-0 object-cover"
       />
       <div
         className={cn(
