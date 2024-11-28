@@ -148,6 +148,22 @@ export async function getFavorites() {
             },
           ],
         },
+        {
+          topPostApocalyptic: [
+            "*",
+            {
+              movies_id: ["movieId"],
+            },
+          ],
+        },
+        {
+          topWars: [
+            "*",
+            {
+              movies_id: ["movieId"],
+            },
+          ],
+        },
 
         // {
         //   quotes: [
@@ -159,6 +175,21 @@ export async function getFavorites() {
         //   ],
         // },
       ],
+    }),
+  );
+}
+
+export async function getTvShows() {
+  return directus.request(
+    readItems("tvShows", {
+      fields: [
+        // "*",
+        "date_created",
+        "title",
+        "showId",
+        "has_seen_show",
+      ],
+      sort: ["-date_created"],
     }),
   );
 }

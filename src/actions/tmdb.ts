@@ -120,6 +120,19 @@ export async function fetchMovieDetails(id: string): Promise<TMDBResponse> {
   return res.json();
 }
 
+export async function fetchAllTvShows(page: number = 1): Promise<TMDBResponse> {
+  const res = await fetch(
+    `${BASE_URL}/discover/tv?api_key=${TMDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&page=${page}`,
+    { next: { revalidate: 3600 } },
+  );
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch TV shows");
+  }
+
+  return res.json();
+}
+
 export async function fetchTrendingTvShows(): Promise<TMDBResponse> {
   const res = await fetch(
     `${BASE_URL}/trending/tv/day?api_key=${TMDB_API_KEY}&language=en-US`,

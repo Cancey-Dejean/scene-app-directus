@@ -34,7 +34,7 @@ export default async function SearchPage({ searchParams }: PageProps) {
       )
     : [];
 
-  console.log(filteredMovies);
+  // console.log(filteredMovies);
 
   return (
     <section className="bg-black py-40">

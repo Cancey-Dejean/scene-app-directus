@@ -1,7 +1,7 @@
 import { Movie } from "@/types";
-import Container from "../../container";
+import Container from "../../../../components/ui/container";
 
-import { AnimatedQuotes } from "../../animated-quotes";
+import { AnimatedQuotes } from "../../../../components/ui/animated-quotes";
 
 export default function FavoriteQuotes({ movie }: { movie: Movie }) {
   const { quotes } = movie;

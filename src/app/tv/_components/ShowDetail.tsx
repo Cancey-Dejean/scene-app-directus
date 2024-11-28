@@ -1,26 +1,15 @@
 import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
-import { Clock, Star, Calendar, Film } from "lucide-react";
+import { Star, Calendar, Tv } from "lucide-react";
 import { imageBaseUrl } from "@/constants";
 import Container from "@/components/ui/container";
-import { Movie } from "@/types";
+import { TvShow } from "@/types";
 
-type MovieDetailProps = {
-  movie: Movie;
+type ShowDetailProps = {
+  show: TvShow;
   details: {
     backdrop_path: string;
-    belongs_to_collection: {
-      backdrop_path: string;
-      id: number;
-      name: string;
-      poster_path: string;
-    };
-    budget: number;
-    genres: Array<{ id: number; name: string }>;
     homepage: string;
     id: number;
-    original_title: string;
-    title?: string;
     popularity: number;
     poster_path: string;
     overview: string;
@@ -29,15 +18,12 @@ type MovieDetailProps = {
     vote_average: number;
     vote_count: number;
     number_of_seasons?: number;
-    release_date?: string;
-    runtime?: number;
-    tagline?: string;
   };
 };
 
-export function MovieDetail({ details, movie }: MovieDetailProps) {
-  const title = details.title || details.name || "";
-  const releaseDate = details.release_date || details.first_air_date;
+export function ShowDetail({ show }: ShowDetailProps) {
+  const title = show.name || show.original_name || "";
+  const releaseDate = show.first_air_date;
   const formattedDate = releaseDate
     ? new Date(releaseDate).toLocaleDateString("en-US", {
         year: "numeric",
@@ -46,9 +32,6 @@ export function MovieDetail({ details, movie }: MovieDetailProps) {
       })
     : "Release date unknown";
 
-  const duration =
-    details.runtime &&
-    `${Math.floor(details.runtime / 60)}h ${details.runtime % 60}m`;
   // console.log(movie.has_seen_movie);
 
   return (
@@ -56,9 +39,9 @@ export function MovieDetail({ details, movie }: MovieDetailProps) {
       <div className="absolute inset-0 z-[2] bg-gradient-to-t from-black via-black/40" />
 
       <div className="absolute inset-0 z-[1]">
-        {movie.banner_alt ? (
+        {show.banner_alt ? (
           <Image
-            src={`${process.env.NEXT_PUBLIC_ASSETS_URL}${movie.banner_alt?.filename_disk}`}
+            src={`${process.env.NEXT_PUBLIC_ASSETS_URL}${show.banner_alt?.filename_disk}`}
             alt={title}
             fill
             priority
@@ -67,7 +50,7 @@ export function MovieDetail({ details, movie }: MovieDetailProps) {
           />
         ) : (
           <Image
-            src={`${imageBaseUrl}${details.backdrop_path}`}
+            src={`${imageBaseUrl}${show.backdrop_path}`}
             alt={title}
             fill
             priority
@@ -79,53 +62,44 @@ export function MovieDetail({ details, movie }: MovieDetailProps) {
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
       </div>
 
-      <Container className="relative z-[2] flex h-full flex-col justify-end pb-10">
+      <Container className="relative z-[2] flex h-full flex-col justify-end pb-10 text-center">
         <h1 className="mb-4 text-4xl font-bold text-white md:text-6xl">
           {title}
         </h1>
-        {details.tagline && (
-          <p className="mb-4 text-xl text-gray-300">{details.tagline}</p>
+
+        {show.tagline && (
+          <p className="mb-4 text-xl text-gray-300">{show.tagline}</p>
         )}
 
-        <div className="mb-6 flex flex-wrap gap-2">
-          {details.genres.map((genre) => (
-            <Badge key={genre.id} variant="secondary">
-              {genre.name}
-            </Badge>
-          ))}
-        </div>
-
-        <div className="flex flex-wrap gap-6 text-gray-300">
+        <div className="flex flex-wrap justify-center gap-6 text-gray-300">
           <div className="flex items-center gap-2">
             <Star className="size-5 text-yellow-500" />
-            <span>{Math.round(details.vote_average * 10) / 10}</span>
+            <span>{Math.round((show.vote_average ?? 0) * 10) / 10}</span>
           </div>
-          <div className="flex items-center gap-2">
-            <Clock className="size-5" />
-            <span>{duration}</span>
-          </div>
+
           <div className="flex items-center gap-2">
             <Calendar className="size-5" />
             <span>{formattedDate}</span>
           </div>
+
           <div className="flex items-center gap-2">
-            <Film className="size-5" />
-            <span className="capitalize">movie</span>
+            <Tv className="size-5" />
+            <span className="capitalize">TV</span>
           </div>
         </div>
 
-        <div className="mt-4 max-w-4xl">
-          <p className="text-lg text-gray-300">{details.overview}</p>
+        <div className="mx-auto mt-4 max-w-3xl">
+          <p className="text-lg text-gray-300">{show.overview}</p>
         </div>
 
         <div>
-          {movie.has_seen_movie && (
+          {show.has_seen_show && (
             <div className="text-white">
               <h3 className="mb-4 mt-6 text-lg font-bold text-green-500">
                 Seen by:
               </h3>
               <div className="flex gap-4">
-                {movie.has_seen_movie.map((person: string) => (
+                {show.has_seen_show.map((person: string) => (
                   <p
                     className="flex size-10 items-center justify-center rounded-full border"
                     key={person}

@@ -49,6 +49,14 @@ export default function Header() {
           >
             Movies
           </Link>
+          <Link
+            href="/tv"
+            className={`text-sm ${
+              isActive("/tv") ? "text-white" : "text-gray-300 hover:text-white"
+            }`}
+          >
+            TV Shows
+          </Link>
         </div>
 
         <Link

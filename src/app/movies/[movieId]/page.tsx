@@ -1,7 +1,7 @@
 import { fetchMoviesByIds } from "@/actions/tmdb";
-import FavoriteScenes from "@/components/ui/Movies/FavoriteScenes";
-import { MovieDetail } from "@/components/ui/Movies/MovieDetail";
-import FavoriteQuotes from "@/components/ui/Movies/Quotes";
+import FavoriteScenes from "@/app/movies/_components/FavoriteScenes";
+import { MovieDetail } from "@/app/movies/_components/MovieDetail";
+import FavoriteQuotes from "@/app/movies/_components/Quotes";
 import { getMovies } from "@/lib/schemas/movies";
 import { Suspense } from "react";
 

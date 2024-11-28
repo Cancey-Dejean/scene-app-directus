@@ -1,5 +1,5 @@
 import { Movie } from "@/types";
-import { FocusCards } from "../../focus-cards";
+import { FocusCards } from "../../../../components/ui/focus-cards";
 
 export default function FavoriteRow({
   title,

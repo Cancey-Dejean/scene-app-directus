@@ -3,19 +3,19 @@
 import { Movie } from "@/types";
 import { useState } from "react";
 import Image from "next/image";
-import { Button } from "../Button";
+import { Button } from "@/components/ui/Button";
 import { movieYearFormat } from "@/utils/movieYearFormat";
 import { imageBaseUrl } from "@/constants";
 import Link from "next/link";
 
 export default function MovieList({ movies }: { movies: Movie[] }) {
-  const scenesShown = 14;
-  const [loadMore, setLoadMore] = useState(scenesShown);
-  const showMoreScenes = () => {
-    setLoadMore(loadMore + scenesShown);
+  const moviesShown = 14;
+  const [loadMore, setLoadMore] = useState(moviesShown);
+  const showMoreMovies = () => {
+    setLoadMore(loadMore + moviesShown);
   };
 
-  console.log(movies);
+  // console.log(movies);
   return (
     <div>
       {movies && movies?.length > 0 ? (
@@ -49,7 +49,7 @@ export default function MovieList({ movies }: { movies: Movie[] }) {
       {movies && movies?.length > 0 && (
         <div className="mt-16 flex flex-col items-center text-center">
           {loadMore < movies?.length && (
-            <Button onClick={showMoreScenes} variant="secondary">
+            <Button onClick={showMoreMovies} variant="secondary">
               Load More
             </Button>
           )}

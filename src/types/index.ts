@@ -154,3 +154,21 @@ export class TMDBError extends Error {
     this.name = "TMDBError";
   }
 }
+
+export type TvShow = {
+  id: number;
+  has_seen_show?: string[];
+  name?: string;
+  original_name?: string;
+  overview?: string;
+  tagline?: string;
+  homepage?: string | null;
+  first_air_date?: string;
+  vote_average?: number | null;
+  vote_count?: number;
+  banner_alt: ImageProps;
+  poster_path?: string | null;
+  backdrop_path?: string | null;
+  number_of_episodes?: number;
+  number_of_seasons?: number;
+};

@@ -1,7 +1,7 @@
 import { fetchTopRatedMovies, fetchTrendingMovies } from "@/actions/tmdb";
 import Container from "@/components/ui/container";
 import { HomeHero } from "@/components/ui/Heroes/HomeHero";
-import { MovieRow } from "@/components/ui/Movies/MovieRow";
+import { MovieRow } from "@/app/movies/_components/MovieRow";
 import { TopFiveFeatured } from "@/components/ui/TopFiveFeatured";
 import { getMovies } from "@/lib/schemas/movies";
 import { Suspense } from "react";

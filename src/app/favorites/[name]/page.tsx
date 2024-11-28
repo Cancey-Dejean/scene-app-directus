@@ -1,7 +1,7 @@
 import { fetchMoviesByIds } from "@/actions/tmdb";
 import Container from "@/components/ui/container";
 import { FocusCards } from "@/components/ui/focus-cards";
-import FavoriteRow from "@/components/ui/Movies/FavoriteRow";
+import FavoriteRow from "@/app/movies/_components/FavoriteRow";
 import { imageBaseUrl } from "@/constants";
 import { getFavorites } from "@/lib/schemas/movies";
 import { FavoriteMovie } from "@/types";
@@ -39,6 +39,8 @@ export default async function Page(props: Props) {
     topMobb,
     topSciFi,
     top80s,
+    topPostApocalyptic,
+    topWars,
   ] = await Promise.all([
     fetchMoviesByIds(
       userFavorites.top5
@@ -105,6 +107,16 @@ export default async function Page(props: Props) {
         .slice(0, 10)
         .map((favorite: FavoriteMovie) => favorite.movies_id.movieId),
     ),
+    fetchMoviesByIds(
+      userFavorites.topPostApocalyptic
+        .slice(0, 10)
+        .map((favorite: FavoriteMovie) => favorite.movies_id.movieId),
+    ),
+    fetchMoviesByIds(
+      userFavorites.topWars
+        .slice(0, 10)
+        .map((favorite: FavoriteMovie) => favorite.movies_id.movieId),
+    ),
   ]);
 
   // console.log(topHorrors);
@@ -150,6 +162,7 @@ export default async function Page(props: Props) {
           <FavoriteRow title="Action" movies={topActions} />
           <FavoriteRow title="Drama" movies={topDramas} />
           <FavoriteRow title="Documentary" movies={topDocumentaries} />
+          <FavoriteRow title="Wars" movies={topWars} />
           <FavoriteRow title="Martial Arts" movies={topMartialArts} />
           <FavoriteRow title="Christmas" movies={topChristmas} />
           <FavoriteRow title="Horror" movies={topHorrors} />
@@ -158,6 +171,7 @@ export default async function Page(props: Props) {
           <FavoriteRow title="Mobb Hits" movies={topMobb} />
           <FavoriteRow title="Sci-Fi" movies={topSciFi} />
           <FavoriteRow title="Best of the 80s" movies={top80s} />
+          <FavoriteRow title="Post Apocalyptic" movies={topPostApocalyptic} />
         </Container>
       </section>
     </>

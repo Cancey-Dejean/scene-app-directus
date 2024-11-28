@@ -1,7 +1,7 @@
 import { fetchMoviesByIds } from "@/actions/tmdb";
 import Container from "@/components/ui/container";
 import HeroBanner from "@/components/ui/Heroes/HeroBanner";
-import MovieList from "@/components/ui/Movies/MovieList";
+import MovieList from "@/app/movies/_components/MovieList";
 import { getMovies } from "@/lib/schemas/movies";
 
 import React, { Suspense } from "react";
@@ -15,7 +15,7 @@ export default async function MoviesPage() {
     movies.map((movie: { movieId?: string | null }) => String(movie.movieId)),
   );
 
-  // console.log(allMovies);
+  // console.log(movies);
   return (
     <>
       <Suspense>
