@@ -14,7 +14,7 @@ export default function FavoriteRow({
 
       {movies.length > 0 ? (
         <div className="grid grid-cols-5 gap-4">
-          {movies.map((movie) => (
+          {movies.slice(0, 1).map((movie) => (
             <FocusCards key={movie.title} cards={movies} />
           ))}
         </div>
