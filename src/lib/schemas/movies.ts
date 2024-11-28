@@ -124,6 +124,30 @@ export async function getFavorites() {
             },
           ],
         },
+        {
+          topMobb: [
+            "*",
+            {
+              movies_id: ["movieId"],
+            },
+          ],
+        },
+        {
+          topSciFi: [
+            "*",
+            {
+              movies_id: ["movieId"],
+            },
+          ],
+        },
+        {
+          top80s: [
+            "*",
+            {
+              movies_id: ["movieId"],
+            },
+          ],
+        },
 
         // {
         //   quotes: [

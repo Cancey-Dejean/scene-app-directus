@@ -36,10 +36,13 @@ export default async function Page(props: Props) {
     topHorrors,
     topThrillers,
     topHood,
+    topMobb,
+    topSciFi,
+    top80s,
   ] = await Promise.all([
     fetchMoviesByIds(
       userFavorites.top5
-        .slice(0, 5)
+        .slice(0, 10)
         .map((favorite: FavoriteMovie) => favorite.movies_id.movieId),
     ),
     fetchMoviesByIds(
@@ -84,6 +87,21 @@ export default async function Page(props: Props) {
     ),
     fetchMoviesByIds(
       userFavorites.topHood
+        .slice(0, 10)
+        .map((favorite: FavoriteMovie) => favorite.movies_id.movieId),
+    ),
+    fetchMoviesByIds(
+      userFavorites.topMobb
+        .slice(0, 10)
+        .map((favorite: FavoriteMovie) => favorite.movies_id.movieId),
+    ),
+    fetchMoviesByIds(
+      userFavorites.topSciFi
+        .slice(0, 10)
+        .map((favorite: FavoriteMovie) => favorite.movies_id.movieId),
+    ),
+    fetchMoviesByIds(
+      userFavorites.top80s
         .slice(0, 10)
         .map((favorite: FavoriteMovie) => favorite.movies_id.movieId),
     ),
@@ -137,6 +155,9 @@ export default async function Page(props: Props) {
           <FavoriteRow title="Horror" movies={topHorrors} />
           <FavoriteRow title="Thriller" movies={topThrillers} />
           <FavoriteRow title="Hood Classics" movies={topHood} />
+          <FavoriteRow title="Mobb Hits" movies={topMobb} />
+          <FavoriteRow title="Sci-Fi" movies={topSciFi} />
+          <FavoriteRow title="Best of the 80s" movies={top80s} />
         </Container>
       </section>
     </>

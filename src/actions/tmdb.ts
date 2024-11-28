@@ -133,6 +133,35 @@ export async function fetchTrendingTvShows(): Promise<TMDBResponse> {
   return res.json();
 }
 
+export async function fetchTvShowsByIds(
+  tvShowIds: string[] | number[],
+): Promise<TMDBResponse[]> {
+  // Convert all IDs to strings for consistency
+  const ids = tvShowIds.map((id) => id.toString());
+
+  // Fetch all TV shows in parallel
+  const tvShowPromises = ids.map((id) =>
+    fetch(`${BASE_URL}/tv/${id}?api_key=${TMDB_API_KEY}&language=en-US`, {
+      next: { revalidate: 3600 },
+    })
+      .then((res) => {
+        if (!res.ok) {
+          console.log(`Failed to fetch TV show with ID: ${id}`);
+          return null;
+        }
+        return res.json();
+      })
+      .catch((error) => {
+        console.error(`Error fetching TV show ${id}:`, error);
+        return null;
+      }),
+  );
+
+  const tvShows = await Promise.all(tvShowPromises);
+  // Filter out any null responses
+  return tvShows.filter((show) => show !== null);
+}
+
 export async function fetchTvShowDetails(id: string): Promise<TMDBResponse> {
   const res = await fetch(
     `${BASE_URL}/tv/${id}?api_key=${TMDB_API_KEY}&language=en-US`,
