@@ -19,7 +19,7 @@ export default async function MoviesPage({
   searchParams: Promise<{ page?: string }>;
 }) {
   const params = await searchParams;
-  const LIMIT = 14;
+  const LIMIT = 21;
   const currentPage = Number(params?.page) || 1;
   const movies = await fetchMoviesForPagination({
     limit: String(LIMIT),
@@ -37,7 +37,7 @@ export default async function MoviesPage({
       <Suspense>
         <HeroBanner movie={allMovies} />
         <div className="mt-4 text-center text-lg text-white">
-          Total: <strong>{totalMovies}</strong>
+          Total: (<strong>{totalMovies}</strong>)
         </div>
       </Suspense>
 
