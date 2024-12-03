@@ -1,5 +1,5 @@
 import { directus } from "@/lib/directus";
-import { readItem, readItems } from "@directus/sdk";
+import { aggregate, readItem, readItems } from "@directus/sdk";
 
 export async function getMovies() {
   return directus.request(
@@ -31,8 +31,18 @@ export async function getMovies() {
         },
       ],
       sort: ["-date_created"],
+      limit: 3000,
     }),
   );
+}
+
+export async function getTotalMovieCount() {
+  const totalCount = await directus.request(
+    aggregate("movies", {
+      aggregate: { count: "*" },
+    }),
+  );
+  return totalCount[0].count;
 }
 
 export async function getMovieById(movieId: string) {
@@ -179,17 +189,24 @@ export async function getFavorites() {
   );
 }
 
-export async function getTvShows() {
-  return directus.request(
-    readItems("tvShows", {
+export async function fetchMoviesForPagination({
+  limit,
+  page,
+}: {
+  limit: string;
+  page: string;
+}) {
+  return await directus.request(
+    readItems("movies", {
       fields: [
-        // "*",
         "date_created",
         "title",
-        "showId",
-        "has_seen_show",
+        "movieId",
+        "banner_alt.filename_disk",
+        "has_seen_movie",
       ],
-      sort: ["-date_created"],
+      limit: parseInt(limit),
+      page: parseInt(page),
     }),
   );
 }

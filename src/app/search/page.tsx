@@ -4,9 +4,11 @@ import Container from "@/components/ui/container";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/Button";
 import { Search } from "lucide-react";
-import { FocusCards } from "@/components/ui/focus-cards";
 import { getMovies } from "@/lib/schemas/movies";
-import { fetchMoviesByIds } from "@/actions/tmdb";
+import { fetchMoviesByIds, fetchTvShowsByIds } from "@/actions/tmdb";
+import { getTvShows } from "@/lib/schemas/shows";
+import { imageBaseUrl } from "@/constants";
+import ItemCard from "@/components/ui/Card/ItemCard";
 
 interface PageProps {
   searchParams: Promise<{ query?: string }>;
@@ -14,7 +16,7 @@ interface PageProps {
 
 export default async function SearchPage({ searchParams }: PageProps) {
   const { query } = await searchParams;
-  const movies = await getMovies();
+  const [movies, shows] = await Promise.all([getMovies(), getTvShows()]);
 
   // Filter movies based on search query
   const filteredMovies = query
@@ -25,16 +27,35 @@ export default async function SearchPage({ searchParams }: PageProps) {
       })
     : [];
 
-  // Fetch movies by IDs from TMDB to show the query results
-  const searchResults = query
-    ? await fetchMoviesByIds(
-        filteredMovies
-          .filter((movie) => movie.movieId != null)
-          .map((movie) => String(movie.movieId)),
-      )
+  // Filter shows based on search query
+  const filteredShows = query
+    ? shows.filter((show) => {
+        const showTitle = show.title?.toLowerCase() || "";
+        const searchQuery = query.toLowerCase();
+        return showTitle.includes(searchQuery);
+      })
     : [];
 
-  // console.log(filteredMovies);
+  // Fetch results from TMDB
+  const [movieResults, showResults] = query
+    ? await Promise.all([
+        fetchMoviesByIds(
+          filteredMovies
+            .filter((movie) => movie.movieId != null)
+            .map((movie) => String(movie.movieId)),
+        ),
+        fetchTvShowsByIds(
+          filteredShows
+            .filter((show) => show.showId != null)
+            .map((show) => String(show.showId)),
+        ),
+      ])
+    : [[], []];
+
+  const totalResults = movieResults.length + showResults.length;
+  const combinedResults = [...movieResults, ...showResults];
+
+  // console.log(combinedResults);
 
   return (
     <section className="bg-black py-40">
@@ -42,9 +63,9 @@ export default async function SearchPage({ searchParams }: PageProps) {
         <div className="mb-8 flex flex-col gap-3">
           <h1 className="text-2xl font-bold text-white">Search</h1>
 
-          {query && searchResults.length > 0 && (
+          {query && totalResults > 0 && (
             <p className="text-lg text-muted-foreground">
-              {searchResults.length} movies found
+              {totalResults} {totalResults === 1 ? "result" : "results"} found
             </p>
           )}
 
@@ -71,12 +92,29 @@ export default async function SearchPage({ searchParams }: PageProps) {
         {!query && <p className="mt-8 text-lg text-gray-400">Add Banner</p>}
 
         <Suspense>
-          <div className="mt-8 grid grid-cols-1 gap-6 text-white sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            <FocusCards cards={searchResults} />
+          <div className="mt-8 grid grid-cols-1 gap-6 text-white sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-7">
+            {combinedResults.map((result, index) => (
+              <div key={index}>
+                {result.title && (
+                  <ItemCard
+                    poster_path={`${imageBaseUrl}${result.poster_path}`}
+                    title={result.title}
+                    url={`/movies/${result.id}`}
+                  />
+                )}
+                {result.name && (
+                  <ItemCard
+                    poster_path={`${imageBaseUrl}${result.poster_path}`}
+                    title={result.name}
+                    url={`/tv/${result.id}`}
+                  />
+                )}
+              </div>
+            ))}
           </div>
         </Suspense>
 
-        {query && searchResults.length === 0 && (
+        {query && totalResults === 0 && (
           <p className="text-lg text-gray-400">
             No results found for &quot;{query}&quot;
           </p>

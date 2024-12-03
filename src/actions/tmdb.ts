@@ -187,3 +187,17 @@ export async function fetchTvShowDetails(id: string): Promise<TMDBResponse> {
 
   return res.json();
 }
+
+export async function fetchMediaByIds(
+  items: Array<{ id: string; type: "movie" | "tv" }>,
+) {
+  const results = await Promise.all(
+    items.map(async ({ id, type }) => {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/${type}/${id}?api_key=${process.env.TMDB_API_KEY}`,
+      );
+      return response.json();
+    }),
+  );
+  return results;
+}

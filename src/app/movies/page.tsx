@@ -2,20 +2,36 @@ import { fetchMoviesByIds } from "@/actions/tmdb";
 import Container from "@/components/ui/container";
 import HeroBanner from "@/components/ui/Heroes/HeroBanner";
 import MovieList from "@/app/movies/_components/MovieList";
-import { getMovies } from "@/lib/schemas/movies";
+import {
+  fetchMoviesForPagination,
+  getTotalMovieCount,
+} from "@/lib/schemas/movies";
 
 import React, { Suspense } from "react";
 
+import PaginationComponent from "@/components/ui/MainPagination";
+
 export const revalidate = 0;
 
-export default async function MoviesPage() {
-  const movies = await getMovies();
+export default async function MoviesPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string }>;
+}) {
+  const params = await searchParams;
+  const LIMIT = 14;
+  const currentPage = Number(params?.page) || 1;
+  const movies = await fetchMoviesForPagination({
+    limit: String(LIMIT),
+    page: String(currentPage),
+  });
+
+  const totalMovies = await getTotalMovieCount();
 
   const allMovies = await fetchMoviesByIds(
     movies.map((movie: { movieId?: string | null }) => String(movie.movieId)),
   );
 
-  // console.log(movies);
   return (
     <>
       <Suspense>
@@ -32,6 +48,14 @@ export default async function MoviesPage() {
                 No movies found
               </p>
             )}
+
+            <div className="mt-8">
+              <PaginationComponent
+                limit={LIMIT}
+                currentPage={currentPage}
+                total={Number(totalMovies)}
+              />
+            </div>
           </Container>
         </section>
       </Suspense>

@@ -1,5 +1,5 @@
 import { fetchTvShowsByIds } from "@/actions/tmdb";
-import { getTvShows } from "@/lib/schemas/movies";
+import { getTvShows } from "@/lib/schemas/shows";
 import { Suspense } from "react";
 import { ShowDetail } from "@/app/tv/_components/ShowDetail";
 

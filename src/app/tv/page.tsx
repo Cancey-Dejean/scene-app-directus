@@ -2,7 +2,7 @@ import { fetchTvShowsByIds } from "@/actions/tmdb";
 import Container from "@/components/ui/container";
 import HeroBannerTv from "@/components/ui/Heroes/HeroBannerTv";
 import TvShowList from "@/app/tv/_components/TvShowList";
-import { getTvShows } from "@/lib/schemas/movies";
+import { getTvShows } from "@/lib/schemas/shows";
 import { Suspense } from "react";
 
 export default async function TV() {
