@@ -36,6 +36,9 @@ export default async function MoviesPage({
     <>
       <Suspense>
         <HeroBanner movie={allMovies} />
+        <div className="mt-4 text-center text-lg text-white">
+          Total: <strong>{totalMovies}</strong>
+        </div>
       </Suspense>
 
       <Suspense>

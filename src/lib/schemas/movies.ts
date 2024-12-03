@@ -207,6 +207,7 @@ export async function fetchMoviesForPagination({
       ],
       limit: parseInt(limit),
       page: parseInt(page),
+      sort: ["-date_created"],
     }),
   );
 }
