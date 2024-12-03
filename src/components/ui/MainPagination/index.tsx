@@ -74,7 +74,9 @@ function PaginationComponent({ limit, currentPage, total }: PaginationProps) {
             }
             aria-disabled={currentPage === 1}
             className={
-              currentPage === 1 ? "pointer-events-none opacity-50" : ""
+              currentPage === 1
+                ? "pointer-events-none text-white opacity-50"
+                : "text-white"
             }
           />
         </PaginationItem>
@@ -82,13 +84,14 @@ function PaginationComponent({ limit, currentPage, total }: PaginationProps) {
         {getPageNumbers().map((page, index) =>
           page === "ellipsis" ? (
             <PaginationItem key={`ellipsis-${index}`}>
-              <PaginationEllipsis />
+              <PaginationEllipsis className="text-white" />
             </PaginationItem>
           ) : (
             <PaginationItem key={page}>
               <PaginationLink
                 href={page === 1 ? "/movies" : `/movies?page=${page}`}
                 isActive={page === currentPage}
+                // className="text-black dark:text-white"
               >
                 {page}
               </PaginationLink>
@@ -100,7 +103,9 @@ function PaginationComponent({ limit, currentPage, total }: PaginationProps) {
           <PaginationNext
             href={`/movies?page=${currentPage + 1}`}
             aria-disabled={!hasMorePages()}
-            className={!hasMorePages() ? "pointer-events-none opacity-50" : ""}
+            className={
+              !hasMorePages() ? "pointer-events-none opacity-50" : "text-white"
+            }
           />
         </PaginationItem>
       </PaginationContent>
