@@ -34,6 +34,7 @@ export default function FavoriteScenes({ movie }: { movie: Movie }) {
                       alt={scene.title}
                       fill
                       className="object-cover"
+                      unoptimized
                     />
                   </div>
                   <h2 className="text-2xl font-bold">{scene.title}</h2>

@@ -10,7 +10,7 @@ type HomeHeroProps = {
 
 export function HomeHero({ movie }: HomeHeroProps) {
   return (
-    <section className="3xl:h-[800px] relative h-[700px] w-full">
+    <section className="relative h-[700px] w-full 3xl:h-[800px]">
       <div className="absolute inset-0 z-[2] bg-gradient-to-t from-black via-black/40" />
 
       <div className="absolute inset-0 z-[1]">
@@ -21,6 +21,7 @@ export function HomeHero({ movie }: HomeHeroProps) {
           priority
           className="object-cover"
           sizes="100vw"
+          unoptimized
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
       </div>

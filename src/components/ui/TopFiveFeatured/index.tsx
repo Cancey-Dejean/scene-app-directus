@@ -33,6 +33,7 @@ export function TopFiveFeatured({ className }: { className?: string }) {
                   alt={name}
                   width={453}
                   height={559}
+                  unoptimized
                 />
                 <h3 className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 font-monoton text-[20rem] text-white opacity-100 transition-opacity duration-300 ease-in-out group-hover:opacity-0">
                   {name.charAt(0)}

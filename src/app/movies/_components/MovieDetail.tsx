@@ -63,6 +63,7 @@ export function MovieDetail({ details, movie }: MovieDetailProps) {
             priority
             className="object-cover"
             sizes="100vw"
+            unoptimized
           />
         ) : (
           <Image
@@ -72,6 +73,7 @@ export function MovieDetail({ details, movie }: MovieDetailProps) {
             priority
             className="object-cover"
             sizes="100vw"
+            unoptimized
           />
         )}
 

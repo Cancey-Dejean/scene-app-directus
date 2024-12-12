@@ -20,6 +20,7 @@ export default function MovieList({ movies }: { movies: Movie[] }) {
                   width={180}
                   height={273}
                   className="mb-2 rounded-lg border border-white/10 transition-all duration-300 group-hover:scale-105"
+                  unoptimized
                 />
                 <p className="font-semibold">{movie.title}</p>
                 <p className="text-gray-400">
