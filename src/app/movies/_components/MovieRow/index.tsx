@@ -67,7 +67,6 @@ export function MovieRow({ movies, title }: MovieRowProps) {
                 width={180}
                 height={273}
                 className="rounded-lg"
-                unoptimized
               />
             </div>
           ))}

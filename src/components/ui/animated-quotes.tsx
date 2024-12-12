@@ -80,7 +80,6 @@ export const AnimatedQuotes = ({
                     height={500}
                     draggable={false}
                     className="h-full w-full rounded-3xl border object-cover object-center"
-                    unoptimized
                   />
                 </motion.div>
               ))}

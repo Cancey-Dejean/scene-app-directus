@@ -12,7 +12,6 @@ export default function Footer() {
             alt="TMDB"
             width={200}
             height={100}
-            unoptimized
           />
         </Link>
       </Container>

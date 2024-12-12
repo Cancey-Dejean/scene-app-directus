@@ -29,7 +29,6 @@ export default function TvShowList({ tvShows }: { tvShows: TvShow[] }) {
                   width={180}
                   height={273}
                   className="mb-2 rounded-lg border border-white/10 transition-all duration-300 group-hover:scale-105"
-                  unoptimized
                 />
                 <div className="relative">
                   <p className="flex items-center gap-1 font-semibold">

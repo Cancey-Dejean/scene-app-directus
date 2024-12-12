@@ -47,7 +47,6 @@ export function ShowDetail({ show }: ShowDetailProps) {
             priority
             className="object-cover"
             sizes="100vw"
-            unoptimized
           />
         ) : (
           <Image
@@ -57,7 +56,6 @@ export function ShowDetail({ show }: ShowDetailProps) {
             priority
             className="object-cover"
             sizes="100vw"
-            unoptimized
           />
         )}
 
